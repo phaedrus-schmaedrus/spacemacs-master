@@ -170,7 +170,7 @@ It should only modify the values of Spacemacs settings."
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
    dotspacemacs-startup-lists '((recents . 5)
-                                (projects . 7))
+                                (agenda . 7))
 
    ;; True if the home buffer should respond to resize events. (default t)
    dotspacemacs-startup-buffer-responsive t
@@ -207,7 +207,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-colorize-cursor-according-to-state t
 
    ;; Default font or prioritized list of fonts.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("Source Code Variable"
                                :size 10.0
                                :weight normal
                                :width normal)
@@ -468,6 +468,71 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+
+;; org-mode customizations
+  (setq org-agenda-files '("z:/Private/jules/orgfiles/"))
+
+  (setq org-todo-keywords
+  '((sequence "TODO(t)"
+      "MAYB(m)"
+      "NEXT(n)"
+      "STRT(s)"
+      "PAUS(p)"
+      "DELG(e)"
+      "PROJ(r)"
+      "STDY(y)"
+      "APPT(o)"
+      "|"
+      "DONE(d)"
+      "ABDN(a)"
+      "CANC(c)")))
+
+  (setq org-todo-keyword-faces
+    '(("PROJ" :background "blue" :foreground "black" :weight bold :box (:line-width 2 :style released-button)) 
+      ("STDY" :background "blue" :foreground "black" :weight bold :box (:line-width 2 :style released-button)) 
+      ("TODO" :background "orange" :foreground "black" :weight bold :box (:line-width 2 :style released-button))
+      ("NEXT" :background "red1" :foreground "black" :weight bold :box (:line-width 2 :style released-button))
+      ("STRT" :background "yellow" :foreground "black" :weight bold :box (:line-width 2 :style released-button))
+      ("PAUS" :background "lightblue" :foreground "black" :weight bold :box (:line-width 2 :style released-button))
+      ("DELG" :background "gold" :foreground "black" :weight bold :box (:line-width 2 :style released-button))
+      ("MAYB" :background "gray" :foreground "black" :weight bold :box (:line-width 2 :style released-button))
+      ("APPT" :background "orange" :foreground "black" :weight bold :box (:line-width 2 :style released-button))
+      ("DONE" :background "forest green" :weight bold :box (:line-width 2 :style released-button))
+      ("CANC" :background "lime green" :foreground "black" :weight bold :box (:line-width 2 :style released-button))
+      ("ABDN" :background "lime green" :foreground "black" :weight bold :box (:line-width 2 :style released-button))))
+
+ (with-eval-after-load 'org
+    (setq org-startup-indented t) ; Enable `org-indent-mode' by default
+    (add-hook 'org-mode-hook #'visual-line-mode) ; Enable visual line mode in org by default
+    )
+
+  (load-file "~/.spacemacs-tags.el")
+
+  ;; set org to refile to 1) the current buffer and 2) all files in orgfiles directory in egnyte
+  (setq org-refile-targets '((nil :maxlevel . 3)
+                             ("z:/Private/jules/orgfiles/daily_todo.org" :maxlevel . 3)
+                             ("z:/Private/jules/orgfiles/todo.org" :maxlevel . 3)))
+
+  ;; set org to use the top level of files as a path to refile to and present all available levels when displaying targets
+  (setq org-refile-use-outline-path '(("daily_todo.org")("todo.org")))
+ ;; (setq org-outline-path-complete-in-steps)
+
+  ;; set org to allow the creation of new parent notes, confirm before creating
+  (setq org-refile-allow-creating-parent-nodes 'confirm)
+
+  ;; auto-disable hl-todo-mode
+  (add-hook 'org-mode-hook (lambda () (hl-todo-mode -1)))
+
+  ;; persistent org-clock
+  (setq org-clock-persist 'history)
+  (org-clock-persistence-insinuate)
+
+  ;; bind SPC a o g to org-goto-clock
+  (spacemacs/set-leader-keys "aog" 'org-clock-goto)
+
+  ;; default new frames maximized
+  (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
