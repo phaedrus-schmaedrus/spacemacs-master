@@ -519,6 +519,10 @@ before packages are loaded."
   ;; auto-disable hl-todo-mode
   (add-hook 'org-mode-hook (lambda () (hl-todo-mode -1)))
 
+  ;; persistent org-clock
+  (setq org-clock-persist 'history)
+  (org-clock-persistence-insinuate)
+
 
   )
 
