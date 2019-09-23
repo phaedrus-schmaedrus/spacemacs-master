@@ -513,9 +513,8 @@ before packages are loaded."
                              ("z:/Private/jules/orgfiles/daily_todo.org" :maxlevel . 3)
                              ("z:/Private/jules/orgfiles/todo.org" :maxlevel . 3)))
 
-  ;; set org to use the top level of files as a path to refile to and present all available levels when displaying targets
-  (setq org-refile-use-outline-path '(("daily_todo.org")("todo.org")))
-  (setq org-outline-path-complete-in-steps)
+  ;; set org to allow the creation of new parent notes, confirm before creating
+  (setq org-refile-allow-creating-parent-nodes 'confirm)
 
 
 
