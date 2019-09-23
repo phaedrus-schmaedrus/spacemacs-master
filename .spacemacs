@@ -526,6 +526,7 @@ before packages are loaded."
   ;; default new frames maximized
   (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
