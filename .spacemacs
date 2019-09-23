@@ -506,6 +506,7 @@ before packages are loaded."
     (add-hook 'org-mode-hook #'visual-line-mode) ; Enable visual line mode in org by default
     )
 
+  (load-file "~/.spacemacs-tags.el")
 
 
   )
