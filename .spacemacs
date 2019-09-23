@@ -516,6 +516,8 @@ before packages are loaded."
   ;; set org to allow the creation of new parent notes, confirm before creating
   (setq org-refile-allow-creating-parent-nodes 'confirm)
 
+  ;; auto-disable hl-todo-mode
+  (add-hook 'org-mode-hook (lambda () (hl-todo-mode -1)))
 
 
   )
