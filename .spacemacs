@@ -508,6 +508,16 @@ before packages are loaded."
 
   (load-file "~/.spacemacs-tags.el")
 
+  ;; set org to refile to 1) the current buffer and 2) all files in orgfiles directory in egnyte
+  (setq org-refile-targets '((nil :maxlevel . 3)
+                             ("z:/Private/jules/orgfiles/daily_todo.org" :maxlevel . 3)
+                             ("z:/Private/jules/orgfiles/todo.org" :maxlevel . 3)))
+
+  ;; set org to use the top level of files as a path to refile to and present all available levels when displaying targets
+  (setq org-refile-use-outline-path '(("daily_todo.org")("todo.org")))
+  (setq org-outline-path-complete-in-steps)
+
+
 
   )
 
