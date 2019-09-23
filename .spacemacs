@@ -501,6 +501,11 @@ before packages are loaded."
       ("CANC" :background "lime green" :foreground "black" :weight bold :box (:line-width 2 :style released-button))
       ("ABDN" :background "lime green" :foreground "black" :weight bold :box (:line-width 2 :style released-button))))
 
+  (with-eval-after-load 'org
+    (setq org-startup-indented t) ; Enable `org-indent-mode' by default
+    (add-hook 'org-mode-hook #'visual-line-mode) ; Enable visual line mode in org by default
+    )
+
 
 
   )
