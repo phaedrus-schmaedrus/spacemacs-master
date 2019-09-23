@@ -523,6 +523,8 @@ before packages are loaded."
   (setq org-clock-persist 'history)
   (org-clock-persistence-insinuate)
 
+  ;; default new frames maximized
+  (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
   )
 
