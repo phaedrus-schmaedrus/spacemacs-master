@@ -508,9 +508,10 @@ before packages are loaded."
     (add-hook 'org-mode-hook #'visual-line-mode) ; Enable visual line mode in org by default
     )
 
+  ;; autoload tags from tag definiton file
   (load-file "~/.spacemacs-tags.el")
 
-  ;; set org to refile to 1) the current buffer and 2) all files in orgfiles directory in egnyte
+  ;; set org to refile to 1) the current buffer and 2) all agenda files, to the 9th subheading
   (setq org-refile-targets '((nil :maxlevel . 9)
                              (org-agenda-files :maxlevel . 9)))
 
@@ -527,6 +528,16 @@ before packages are loaded."
   ;; default new frames maximized
   (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
+  ;; set default target file for notes
+  (setq org-default-notes-file "Z:\Private\Jules\org\refile.org")
+
+  ;; exclude todo keywords w/ done state from refile targets
+  (defun bh/verify-refile-target ()
+    "Exclude todo keywords with a done state from refile targets"
+    (not (member (nth 2 (org-heading-components)) org-done-keywords)))
+  (setq org-refile-target-verify-function 'bh/verify-refile-target)
+
+  ;; org-capture templates
 
   )
 
