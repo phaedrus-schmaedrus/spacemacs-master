@@ -529,7 +529,7 @@ before packages are loaded."
   (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
   ;; set default target file for notes
-  (setq org-default-notes-file "Z:\Private\Jules\org\refile.org")
+  (setq org-default-notes-file "z:/Private/jules/org/refile.org")
 
   ;; exclude todo keywords w/ done state from refile targets
   (defun bh/verify-refile-target ()
@@ -538,6 +538,20 @@ before packages are loaded."
   (setq org-refile-target-verify-function 'bh/verify-refile-target)
 
   ;; org-capture templates
+  (setq org-capture-templates
+        '(("t" "todo" entry (file org-default-notes-file)
+           "* TODO %?\n%u\n%a\n" :clock-in t :clock-resume t)
+          ("m" "Meeting" entry (file org-default-notes-file)
+           "* MEET with %? :meeting:\n%t" :clock-in t :clock-resume t)
+          ("p" "Phone Call" entry (file org-default-notes-file)
+           "* PHON %? :phone:\n%t" :clock-in t :clock-resume t)
+          ;; change the directory for diary entries
+          ("d" "Diary" entry (file+datetree org-default-notes-file)
+           "* %?\n%U\n :personal:" :clock-in t :clock-resume t)
+          ("i" "Idea" entry (file org-default-notes-file)
+           "* %? :IDEA: \n%t" :clock-in t :clock-resume t)
+          ("n" "Next Task" entry (file+headline org-default-notes-file "Tasks")
+           "** NEXT %? \nDEADLINE: %t") ))
 
   )
 
