@@ -472,7 +472,7 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
   ;; org-mode customizations
-  (setq org-agenda-files '("z:/Private/jules/orgfiles/"))
+  (setq org-agenda-files '("z:/Private/jules/org/"))
 
   (setq org-todo-keywords
   '((sequence "TODO(t)"
