@@ -511,9 +511,8 @@ before packages are loaded."
   (load-file "~/.spacemacs-tags.el")
 
   ;; set org to refile to 1) the current buffer and 2) all files in orgfiles directory in egnyte
-  (setq org-refile-targets '((nil :maxlevel . 3)
-                             ("z:/Private/jules/orgfiles/daily_todo.org" :maxlevel . 3)
-                             ("z:/Private/jules/orgfiles/todo.org" :maxlevel . 3)))
+  (setq org-refile-targets '((nil :maxlevel . 9)
+                             (org-agenda-files :maxlevel . 9)))
 
   ;; set org to allow the creation of new parent notes, confirm before creating
   (setq org-refile-allow-creating-parent-nodes 'confirm)
