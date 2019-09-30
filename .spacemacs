@@ -478,7 +478,7 @@ before packages are loaded."
   '((sequence "TODO(t)"
       "MAYB(m)"
       "NEXT(n)"
-      "PAUS(p@/!)"
+      "WAITING(p@/!)"
       "|"
       "DONE(d!)"
       "ABDN(a@/!)"
@@ -488,19 +488,19 @@ before packages are loaded."
       "PHON (p)")))
 
   (setq org-todo-state-tags-triggers
-        (quote (("CANC" ("CANC" . t))
-                ("PAUS" ("PAUS" . t))
+        (quote (("CANC" ("CANCELLED" . t))
+                ("WAITING" ("WAITING" . t))
                 (done ("PAUS"))
-                ("TODO" ("PAUS") ("CANC"))
-                ("NEXT" ("PAUS") ("CANC"))
-                ("DONE" ("PAUS") ("CANC")))))
+                ("TODO" ("WAITING") ("CANCELLED"))
+                ("NEXT" ("WAITING") ("CANCELLED"))
+                ("DONE" ("WAITING") ("CANCELLED")))))
 
   (setq org-todo-keyword-faces
     '(("PHON" :background "blue" :foreground "black" :weight bold :box (:line-width 2 :style released-button))
       ("MEET" :background "blue" :foreground "black" :weight bold :box (:line-width 2 :style released-button))
       ("TODO" :background "orange" :foreground "black" :weight bold :box (:line-width 2 :style released-button))
       ("NEXT" :background "red1" :foreground "black" :weight bold :box (:line-width 2 :style released-button))
-      ("PAUS" :background "lightblue" :foreground "black" :weight bold :box (:line-width 2 :style released-button))
+      ("WAITING" :background "lightblue" :foreground "black" :weight bold :box (:line-width 2 :style released-button))
       ("MAYB" :background "gray" :foreground "black" :weight bold :box (:line-width 2 :style released-button))
       ("DONE" :background "forest green" :weight bold :box (:line-width 2 :style released-button))
       ("CANC" :background "lime green" :foreground "black" :weight bold :box (:line-width 2 :style released-button))
@@ -723,8 +723,6 @@ Skip project and sub-project tasks, habits, and project related tasks."
       (cond
        ((bh/is-project-p)
         subtree-end)
-       ((org-is-habit-p)
-        subtree-end)
        (t
         nil)))))
 
@@ -734,8 +732,6 @@ Skip project and sub-project tasks, habits, and project related tasks."
     (widen)
     (let ((next-headline (save-excursion (or (outline-next-heading) (point-max)))))
       (cond
-       ((org-is-habit-p)
-        next-headline)
        ((and bh/hide-scheduled-and-waiting-next-tasks
              (member "WAITING" (org-get-tags-at)))
         next-headline)
@@ -758,8 +754,6 @@ When not restricted, skip project and sub-project tasks, habits, and project rel
       (cond
        ((bh/is-project-p)
         next-headline)
-       ((org-is-habit-p)
-        subtree-end)
        ((and (not limit-to-project)
              (bh/is-project-subtree-p))
         subtree-end)
@@ -779,8 +773,6 @@ Skip project and sub-project tasks, habits, and project related tasks."
       (cond
        ((bh/is-project-p)
         subtree-end)
-       ((org-is-habit-p)
-        subtree-end)
        ((bh/is-project-subtree-p)
         subtree-end)
        (t
@@ -796,8 +788,6 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
       (cond
        ((bh/is-project-p)
         next-headline)
-       ((org-is-habit-p)
-        subtree-end)
        ((and (bh/is-project-subtree-p)
              (member (org-get-todo-state) (list "NEXT")))
         subtree-end)
@@ -813,8 +803,6 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
     (let ((subtree-end (save-excursion (org-end-of-subtree t))))
       (cond
        ((bh/is-project-p)
-        subtree-end)
-       ((org-is-habit-p)
         subtree-end)
        (t
         nil)))))
