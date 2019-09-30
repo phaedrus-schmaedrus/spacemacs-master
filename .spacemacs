@@ -478,14 +478,22 @@ before packages are loaded."
   '((sequence "TODO(t)"
       "MAYB(m)"
       "NEXT(n)"
-      "PAUS(p)"
+      "PAUS(p@/!)"
       "|"
-      "DONE(d)"
-      "ABDN(a)"
-      "CANC(c)"
-      "DELG(g)"
+      "DONE(d!)"
+      "ABDN(a@/!)"
+      "CANC(c@/!)"
+      "DELG(g@/!)"
       "MEET (e)"
       "PHON (p)")))
+
+  (setq org-todo-state-tags-triggers
+        (quote (("CANC" ("CANC" . t))
+                ("PAUS" ("PAUS" . t))
+                (done ("PAUS"))
+                ("TODO" ("PAUS") ("CANC"))
+                ("NEXT" ("PAUS") ("CANC"))
+                ("DONE" ("PAUS") ("CANC")))))
 
   (setq org-todo-keyword-faces
     '(("PHON" :background "blue" :foreground "black" :weight bold :box (:line-width 2 :style released-button))
