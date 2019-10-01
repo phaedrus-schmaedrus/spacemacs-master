@@ -831,7 +831,7 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
                 (org-agenda-sorting-strategy
                  '(todo-state-down effort-up category-keep))))
               (" " "Agenda"
-               ((agenda "" nil)
+               ((agenda "" ((org-agenda-span 1)))
                 (tags "REFILE"
                       ((org-agenda-overriding-header "Tasks to Refile")
                        (org-tags-match-list-sublevels nil)))
