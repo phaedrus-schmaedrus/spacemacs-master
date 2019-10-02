@@ -472,20 +472,20 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
   ;; org-mode customizations
-  (setq org-agenda-files '("z:/Private/jules/org/vital.org"))
+  (setq org-agenda-files '("z:/Private/jules/org/"))
 
   (setq org-todo-keywords
   '((sequence "TODO(t)"
       "MAYB(m)"
       "NEXT(n)"
-      "WAITING(p@/!)"
+      "WAITING(w@/!)"
       "|"
       "DONE(d!)"
       "ABDN(a@/!)"
       "CANC(c@/!)"
       "DELG(g@/!)"
-      "MEET (e)"
-      "PHON (p)")))
+      "MEET(e)"
+      "PHON(p)")))
 
   (setq org-todo-state-tags-triggers
         (quote (("CANC" ("CANCELLED" . t))
@@ -835,7 +835,7 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
                 (tags "REFILE"
                       ((org-agenda-overriding-header "Tasks to Refile")
                        (org-tags-match-list-sublevels nil)))
-                (tags-todo "-CANCELLED/!"
+                (tags-todo "-CANCELLED-recurring/!"
                            ((org-agenda-overriding-header "Stuck Projects")
                             (org-agenda-skip-function 'bh/skip-non-stuck-projects)
                             (org-agenda-sorting-strategy
