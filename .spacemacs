@@ -560,6 +560,8 @@ before packages are loaded."
 
   ;; org-agenda config
 
+  (setq org-agenda-tags-todo-honor-ignore-options t)
+
   ;; org-agenda functions
   (defun bh/find-project-task ()
     "Move point to the parent (project) task if any"
