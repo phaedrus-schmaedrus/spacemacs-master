@@ -488,6 +488,7 @@ before packages are loaded."
       "ABDN(a@/!)"
       "CANC(c@/!)"
       "DELG(g@/!)"
+      "TICKET(i@/!)"
       "MEET(e)"
       "PHON(p)")))
 
@@ -509,6 +510,7 @@ before packages are loaded."
       ("DONE" :background "forest green" :weight bold :box (:line-width 2 :style released-button))
       ("CANC" :background "lime green" :foreground "black" :weight bold :box (:line-width 2 :style released-button))
       ("DELG" :background "green" :foreground "black" :weight bold :box (:line-width 2 :style released-button))
+      ("TICKET" :background "green" :foreground "black" :weight bold :box (:line-width 2 :style released-button))
       ("ABDN" :background "lime green" :foreground "black" :weight bold :box (:line-width 2 :style released-button))))
 
   (with-eval-after-load 'org
